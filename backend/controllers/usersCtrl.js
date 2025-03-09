@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../model/User");
+require('dotenv').config(); // Load environment variables
 
 //!User Registration
 
@@ -50,8 +51,8 @@ const usersController = {
       throw new Error("Invalid login credentials");
     }
     //! Generate a token
-    const token = jwt.sign({ id: user._id }, "masynctechKey", {
-      expiresIn: "4h",
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "9h",
     });
     //!Send the response
     res.json({
