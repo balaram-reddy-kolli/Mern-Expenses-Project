@@ -4,6 +4,7 @@ import { getUserFromStorage } from "../../utils/getUserFromStorage";
 
 //! Get the token
 const token = getUserFromStorage();
+
 //! Add
 export const addCategoryAPI = async ({ name, type }) => {
   try {
@@ -19,47 +20,65 @@ export const addCategoryAPI = async ({ name, type }) => {
         },
       }
     );
-    //Return a promise
+    // Return a promise
     return response.data;
   } catch (error) {
     console.error("Error adding category:", error.response?.data || error.message);
     throw error;
   }
 };
-//! update
+
+//! Update
 export const updateCategoryAPI = async ({ name, type, id }) => {
-  const response = await axios.put(
-    `${BASE_URL}/categories/update/${id}`,
-    {
-      name,
-      type,
-    },
-    {
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/categories/update/${id}`,
+      {
+        name,
+        type,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    // Return a promise
+    return response.data;
+  } catch (error) {
+    console.error("Error updating category:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+//! Delete
+export const deleteCategoryAPI = async (id) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/categories/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
-  );
-  //Return a promise
-  return response.data;
+    });
+    // Return a promise
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting category:", error.response?.data || error.message);
+    throw error;
+  }
 };
-//! delete
-export const deleteCategoryAPI = async (id) => {
-  const response = await axios.delete(`${BASE_URL}/categories/delete/${id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  //Return a promise
-  return response.data;
-};
-//! lists
+
+//! Lists
 export const listCategoriesAPI = async () => {
-  const response = await axios.get(`${BASE_URL}/categories/lists`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  //Return a promise
-  return response.data;
-};
+  try {
+    const response = await axios.get(`${BASE_URL}/categories/lists`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // Return a promise
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching categories:", error.response?.data || error.message);
+    throw error;
+  }
+}; 

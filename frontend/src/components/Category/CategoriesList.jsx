@@ -7,11 +7,14 @@ import {
   listCategoriesAPI,
 } from "../../services/category/categoryService";
 import AlertMessage from "../Alert/AlertMessage";
+import { getUserFromStorage } from "../../utils/getUserFromStorage";
 
 const CategoriesList = () => {
+  const token = getUserFromStorage(); // Retrieve the token from local storage
+
   //fetching
-  const { data, isError, isLoading, isFetched, error, refetch } = useQuery({
-    queryFn: listCategoriesAPI,
+  const { data, isError, isLoading, error, refetch } = useQuery({
+    queryFn: () => listCategoriesAPI(token),
     queryKey: ["list-categories"],
   });
 
@@ -26,9 +29,10 @@ const CategoriesList = () => {
     error: categoryErr,
     isSuccess,
   } = useMutation({
-    mutationFn: deleteCategoryAPI,
+    mutationFn: (id) => deleteCategoryAPI(id, token),
     mutationKey: ["delete-category"],
   });
+
   //Delete handler
   const handleDelete = (id) => {
     mutateAsync(id)
@@ -38,6 +42,7 @@ const CategoriesList = () => {
       })
       .catch((e) => console.log(e));
   };
+
   return (
     <div className="max-w-md mx-auto my-10 bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Categories</h2>
