@@ -17,7 +17,7 @@ mongoose
 
 //! Cors config
 const corsOptions = {
-  origin: ["https://expense-tracker-ki4s.onrender.com"],
+  origin: ["https://mern-expenses-project-2.onrender.com"],
 };
 app.use(cors(corsOptions));
 //!Middlewares
