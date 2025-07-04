@@ -7,14 +7,11 @@ import {
   listCategoriesAPI,
 } from "../../services/category/categoryService";
 import AlertMessage from "../Alert/AlertMessage";
-import { getUserFromStorage } from "../../utils/getUserFromStorage";
 
 const CategoriesList = () => {
-  const token = getUserFromStorage(); // Retrieve the token from local storage
-
   //fetching
   const { data, isError, isLoading, error, refetch } = useQuery({
-    queryFn: () => listCategoriesAPI(token),
+    queryFn: () => listCategoriesAPI(),
     queryKey: ["list-categories"],
   });
 
@@ -29,7 +26,7 @@ const CategoriesList = () => {
     error: categoryErr,
     isSuccess,
   } = useMutation({
-    mutationFn: (id) => deleteCategoryAPI(id, token),
+    mutationFn: (id) => deleteCategoryAPI(id),
     mutationKey: ["delete-category"],
   });
 
