@@ -17,7 +17,7 @@ mongoose
 
 //! Cors config
 const corsOptions = {
-  origin: ["https://mern-expenses-project-2.onrender.com"],
+  origin: ["http://localhost:5173"],
 };
 app.use(cors(corsOptions));
 //!Middlewares
