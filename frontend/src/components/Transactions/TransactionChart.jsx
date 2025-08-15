@@ -95,7 +95,7 @@ const TransactionChart = () => {
                 const style = meta.controller.getStyle(i);
                 const value = data.datasets[0].data[i] || 0;
                 return {
-                  text: `${label}: $${value.toFixed(2)}`,
+                  text: `${label}: ₹${value.toFixed(2)}`,
                   fillStyle: style.backgroundColor,
                   strokeStyle: style.borderColor,
                   lineWidth: style.borderWidth,
@@ -125,7 +125,7 @@ const TransactionChart = () => {
           label: function(context) {
             const label = context.label || '';
             const value = context.parsed || 0;
-            return `${label}: $${value.toFixed(2)}`;
+            return `${label}: ₹${value.toFixed(2)}`;
           }
         }
       }
@@ -143,19 +143,19 @@ const TransactionChart = () => {
         <div className="text-center">
           <div className="text-sm text-gray-600">Total Income</div>
           <div className="text-xl font-bold text-green-600">
-            ${totals?.income?.toFixed(2) || '0.00'}
+            ₹{totals?.income?.toFixed(2) || '0.00'}
           </div>
         </div>
         <div className="text-center">
           <div className="text-sm text-gray-600">Total Expense</div>
           <div className="text-xl font-bold text-red-600">
-            ${totals?.expense?.toFixed(2) || '0.00'}
+            ₹{totals?.expense?.toFixed(2) || '0.00'}
           </div>
         </div>
         <div className="text-center">
           <div className="text-sm text-gray-600">Net Balance</div>
           <div className={`text-xl font-bold ${(totals?.income - totals?.expense) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-            ${((totals?.income || 0) - (totals?.expense || 0)).toFixed(2)}
+            ₹{((totals?.income || 0) - (totals?.expense || 0)).toFixed(2)}
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ const TransactionList = () => {
                   {transaction.category?.name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  ${transaction.amount}
+                  ₹{transaction.amount}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {transaction.description}

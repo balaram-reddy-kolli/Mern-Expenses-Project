@@ -68,7 +68,7 @@ const FilterSection = () => {
                       transaction.type.slice(1)}
                   </span>
                   <span className="ml-2 text-gray-800">
-                    {transaction.category?.name} - $
+                    {transaction.category?.name} - ₹
                     {transaction.amount.toLocaleString()}
                   </span>
                   <span className="text-sm text-gray-600 italic ml-2">
