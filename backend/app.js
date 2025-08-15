@@ -17,7 +17,7 @@ mongoose
 
 //! Cors config
 const corsOptions = {
-  origin: ["https://mern-expenses-project.onrender.com"],
+  origin: ["https://mern-expenses-project-1.onrender.com"],
 };
 app.use(cors(corsOptions));
 //!Middlewares
